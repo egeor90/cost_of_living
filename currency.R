@@ -26,4 +26,4 @@ invisible(capture.output(fx_ <- suppressWarnings(suppressMessages(invisible(exch
 invisible(capture.output(rate_ <- suppressWarnings(suppressMessages(invisible(as.numeric(fx_[which(as.character(fx_$currency) == fx_2),2]))))))
 system("clear");
 
-cat(paste0(curr_1, " ", toupper(fx_1), " = ",as.numeric(curr_1)*rate_, " ",fx_2),"\n\n\n")
+cat(paste0(curr_1, " ", toupper(fx_1), " = ",round(as.numeric(curr_1)*rate_,2), " ",fx_2),"\n\n\n")
