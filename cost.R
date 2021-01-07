@@ -42,6 +42,8 @@ if(!is.na(grep(str_to_title(city_1), all_cities$city) || grep(str_to_title(city_
   stop("This city is not available. Please enter another city!")
 }
 
+country_1 <- ifelse(city_link_1 == "London", "United Kingdom", country_1)
+
 currency_ <- countrycode(country_1,origin = 'country.name',destination = "iso4217c")
 
 if(length(strsplit(city_link_1, " ")[[1]]) > 1){
@@ -64,6 +66,7 @@ if(country_1 == "United+States"){
 
 cat(paste0("Enter the amount to compare (in ", currency_, "): "));
 amount_ <- readLines("stdin",n=1);
+
 cat("Enter the city to compare: ");
 city_2 <- readLines("stdin",n=1);
 
@@ -85,6 +88,9 @@ if(!is.na(grep(str_to_title(city_2), all_cities$city) || grep(str_to_title(city_
 }else{
   stop("This city is not available. Please enter another city!")
 }
+
+country_2 <- ifelse(city_link_2 == "London", "United Kingdom", country_2)
+
 if(length(strsplit(city_link_2, " ")[[1]]) > 1){
   city_link_2 <- paste0(strsplit(city_link_2, " ")[[1]], collapse = "+")
 }else{
@@ -102,6 +108,7 @@ if(length(strsplit(country_2, " ")[[1]]) > 1){
 }else{
   country_2 <- country_2
 }
+
 
 start_ <- Sys.time()
 
@@ -133,8 +140,6 @@ price2_inbase <- round(price_2*(price2_inbase[which(price2_inbase$currency == cu
 invisible(capture.output(fx_usd <- exchange_rate_latest()))
 price1_usd <- as.numeric(fx_usd[which(fx_usd$currency == currency_),2])
 price2_usd <- as.numeric(fx_usd[which(fx_usd$currency == currency_2),2])
-
-
 
 system("clear");
 
